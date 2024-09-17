@@ -1,0 +1,67 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependências do Node.js
+node_modules/
+npm-debug.log*
+
+# Dependências de pacotes
+/pnpm-lock.yaml
+/yarn.lock
+/package-lock.json
+
+# Diretório de compilação
+dist/
+build/
+
+# Diretório de cache do npm
+.npm/
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.swo
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de teste de banco de dados
+*.sqlite
+*.db
+
+# Sistemas de controle de versão
+.svn/
+.hg/
+.lock-wscript
+
+# Arquivos de configuração do ambiente local
+.env
+.env.*
+.env.local
+
+# Logs do Mac OS
+.AppleDouble
+.LSOverride
+
+# Cobertura de testes
+coverage/
+
+# Arquivos de backup
+*.bak
+*.orig
+*.old
+
+# Outros
+*.log
+*.out
+
