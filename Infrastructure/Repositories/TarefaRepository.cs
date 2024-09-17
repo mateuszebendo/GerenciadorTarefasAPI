@@ -52,6 +52,23 @@ public class TarefaRepository : ITarefaRepository
         }
     }
 
+    public async Task<IEnumerable<Tarefa>> GetAlphabetically()
+    {
+        try
+        {
+            string sqlQuery = "SELECT * FROM Tarefas ORDER BY Titulo ASC";
+
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                return await connection.QueryAsync<Tarefa>(sqlQuery);
+            }
+        }
+        catch (PostgresException error)
+        {
+            throw new ApplicationException("Um erro aconteceu durante a query SQL: " + error.Message);
+        }
+    }
+
     public async Task<Tarefa> GetById(int id)
     {
         try

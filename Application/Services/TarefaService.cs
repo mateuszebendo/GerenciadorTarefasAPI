@@ -10,18 +10,28 @@ namespace Application.Services;
 public class TarefaService : ITarefaService
 {
     private readonly ITarefaRepository _tarefaRepository;
+    private readonly ITarefaDomainService _tarefaDomainService;
     private readonly IMapper _mapper;
 
-    public TarefaService(ITarefaRepository tarefaRepository, IMapper mapper)
+    public TarefaService(ITarefaRepository tarefaRepository, ITarefaDomainService tarefaDomainService, IMapper mapper)
     {
         _tarefaRepository = tarefaRepository;
         _mapper = mapper;
+        _tarefaDomainService = tarefaDomainService;
     }
     
     public async Task<TarefaDTO> Post(CriarTarefaDTO criarTarefaDto)
     {
         try
         {
+            List<string> listaTarefa = new List<string>();
+            foreach (var antigaTarefa in await _tarefaRepository.GetAlphabetically())
+            {
+                listaTarefa.Add(antigaTarefa.Titulo);
+            }
+            
+            _tarefaDomainService.VerificaDuplicidadeTitulo(listaTarefa, criarTarefaDto.Titulo);
+            
             Tarefa tarefa = new Tarefa(criarTarefaDto.Titulo, criarTarefaDto.Descricao, criarTarefaDto.Status);
 
             tarefa = await _tarefaRepository.Post(tarefa);
