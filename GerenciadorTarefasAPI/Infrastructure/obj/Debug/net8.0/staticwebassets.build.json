@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "w/DECb020U9+xP77rddeQRoPg6qMgLSSeTJLyZalu8g=",
+  "Source": "Infrastructure",
+  "BasePath": "_content/Infrastructure",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Domain/Domain.csproj",
+      "Version": 2,
+      "Source": "Domain",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

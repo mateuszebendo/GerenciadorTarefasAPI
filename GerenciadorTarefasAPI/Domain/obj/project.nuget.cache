@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "q2P4BfXP3mSo2+NGGBGT5tMhtmT0lESHTzhkvDYnRhAjUeZLyYvMyBuIKDLMgF+CmtpPrkL2eO2ZSewMZAKS6A==",
+  "success": true,
+  "projectFilePath": "/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Domain/Domain.csproj",
+  "expectedPackageFiles": [
+    "/home/zeze/.nuget/packages/microsoft.aspnetcore.openapi/8.0.8/microsoft.aspnetcore.openapi.8.0.8.nupkg.sha512",
+    "/home/zeze/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/zeze/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/zeze/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/home/zeze/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/home/zeze/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/home/zeze/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
