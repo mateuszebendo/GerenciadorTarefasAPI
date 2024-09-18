@@ -9,6 +9,8 @@
 
     <ItemGroup>
         <PackageReference Include="Dapper" Version="2.1.35" />
+        <PackageReference Include="MassTransit" Version="8.2.5" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.5" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
         <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
         <PackageReference Include="Npgsql" Version="8.0.3" />

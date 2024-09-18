@@ -20,8 +20,10 @@ public class TarefaDTO
     public DateTime DataConclusao { get; set; }
     
     public Status Status { get; set; }
+    
+    public int UsuarioId { get; set; }
 
-    public TarefaDTO(int tarefaId, string titulo, string descricao, DateTime dataCriacao, DateTime dataConclusao, Status status)
+    public TarefaDTO(int tarefaId, string titulo, string descricao, DateTime dataCriacao, DateTime dataConclusao, Status status, int usuarioId)
     {
         TarefaId = tarefaId;
         Titulo = titulo;
@@ -29,6 +31,7 @@ public class TarefaDTO
         DataCriacao = dataCriacao;
         DataConclusao = dataConclusao;
         Status = status;
+        UsuarioId = usuarioId;
     }
 
     public TarefaDTO(Tarefa tarefa)
@@ -39,5 +42,6 @@ public class TarefaDTO
         DataCriacao = tarefa.DataCriacao;
         DataConclusao = tarefa.DataConclusao;
         Status = tarefa.Status;
+        UsuarioId = tarefa.UsuarioId;
     }
 }

@@ -42,3 +42,6 @@
 /home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/obj/Debug/net8.0/Presentation.pdb
 /home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/obj/Debug/net8.0/Presentation.genruntimeconfig.cache
 /home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/obj/Debug/net8.0/ref/Presentation.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/MassTransit.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/MassTransit.Abstractions.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/MassTransit.RabbitMqTransport.dll

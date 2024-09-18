@@ -13,11 +13,14 @@ var configuration = builder.Configuration;
 DataBaseConfig.Initialize(configuration);
 
 builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddScoped<ITarefaService, TarefaService>();
 builder.Services.AddScoped<ITarefaDomainService, TarefaDomainService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 builder.Services.AddAutoMapper(typeof(TarefaProfile));
+builder.Services.AddAutoMapper(typeof(UsuarioProfile));
 
 builder.Services.AddControllers(options =>
 {

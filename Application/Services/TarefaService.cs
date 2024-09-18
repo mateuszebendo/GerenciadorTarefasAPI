@@ -32,7 +32,7 @@ public class TarefaService : ITarefaService
             
             _tarefaDomainService.VerificaDuplicidadeTitulo(listaTarefa, criarTarefaDto.Titulo);
             
-            Tarefa tarefa = new Tarefa(criarTarefaDto.Titulo, criarTarefaDto.Descricao, criarTarefaDto.Status);
+            Tarefa tarefa = new Tarefa(criarTarefaDto.Titulo, criarTarefaDto.Descricao, criarTarefaDto.Status, criarTarefaDto.UsuarioId);
 
             tarefa = await _tarefaRepository.Post(tarefa);
 
@@ -91,7 +91,7 @@ public class TarefaService : ITarefaService
         try
         {
             Tarefa tarefa = new Tarefa(atualizarTarefaDto.Titulo,
-                atualizarTarefaDto.DataConclusao, atualizarTarefaDto.Descricao);
+                atualizarTarefaDto.DataConclusao, atualizarTarefaDto.Descricao, atualizarTarefaDto.UsuarioId);
 
             if (await _tarefaRepository.Put(tarefa, id))
             {

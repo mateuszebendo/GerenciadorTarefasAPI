@@ -20,7 +20,7 @@ public class TarefaController : ControllerBase
     [HttpPost("criar-tarefa")]
     public async Task<IActionResult> Post([FromBody] CriarTarefaRequest criarTarefaRequest)
     {
-        CriarTarefaDTO criarTarefaDto = new CriarTarefaDTO(criarTarefaRequest.Titulo, criarTarefaRequest.Descricao);
+        CriarTarefaDTO criarTarefaDto = new CriarTarefaDTO(criarTarefaRequest.Titulo, criarTarefaRequest.Descricao, criarTarefaRequest.UsuarioId);
 
         TarefaDTO tarefaDto = await _tarefaService.Post(criarTarefaDto);
 
@@ -52,7 +52,7 @@ public class TarefaController : ControllerBase
     public async Task<IActionResult> Put([FromBody] AtualizarTarefaRequest atualizarTarefaRequest, [FromRoute] int id)
     {
         AtualizarTarefaDTO atualizarTarefaDto = new AtualizarTarefaDTO(atualizarTarefaRequest.Titulo,
-            atualizarTarefaRequest.Descricao, atualizarTarefaRequest.DataConclusao);
+            atualizarTarefaRequest.Descricao, atualizarTarefaRequest.DataConclusao, atualizarTarefaRequest.UsuarioId);
         
         return Ok(new TarefaReturn(await _tarefaService.Put(atualizarTarefaDto, id)));
     }

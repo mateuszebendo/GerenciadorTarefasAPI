@@ -15,12 +15,15 @@ public class CriarTarefaDTO
     public DateTime DataCriacao { get; set; }
     
     public Status Status { get; set; }
+    
+    public int UsuarioId { get; set; }
 
-    public CriarTarefaDTO(string titulo, string descricao)
+    public CriarTarefaDTO(string titulo, string descricao, int usuarioId)
     {
         Titulo = titulo;
         Descricao = descricao;
         DataCriacao = DateTime.Today;
         Status = Status.Pendente;
+        UsuarioId = usuarioId;
     }
 }

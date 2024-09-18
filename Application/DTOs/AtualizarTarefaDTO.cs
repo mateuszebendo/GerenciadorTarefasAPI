@@ -14,11 +14,13 @@ public class AtualizarTarefaDTO
     
     public DateTime DataConclusao { get; set; }
     
+    public int UsuarioId { get; set; }
 
-    public AtualizarTarefaDTO(string titulo, string descricao,DateTime dataConclusao)
+    public AtualizarTarefaDTO(string titulo, string descricao,DateTime dataConclusao, int usuarioId)
     {
         Titulo = titulo;
         Descricao = descricao;
         DataConclusao = dataConclusao;
+        UsuarioId = usuarioId;
     }
 }

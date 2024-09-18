@@ -31,7 +31,7 @@ public class TarefaRepository : ITarefaRepository
         }
         catch (PostgresException error)
         {
-            throw new ApplicationException("Um erro aconteceu durante a query SQL: " + error.Message);
+            throw new NpgsqlException("Um erro aconteceu durante a query SQL: " + error.Message);
         }
     }
     
@@ -48,7 +48,7 @@ public class TarefaRepository : ITarefaRepository
         }
         catch (PostgresException error)
         {
-            throw new ApplicationException("Um erro aconteceu durante a query SQL: " + error.Message);
+            throw new NpgsqlException("Um erro aconteceu durante a query SQL: " + error.Message);
         }
     }
 
@@ -65,7 +65,7 @@ public class TarefaRepository : ITarefaRepository
         }
         catch (PostgresException error)
         {
-            throw new ApplicationException("Um erro aconteceu durante a query SQL: " + error.Message);
+            throw new NpgsqlException("Um erro aconteceu durante a query SQL: " + error.Message);
         }
     }
 
@@ -82,7 +82,7 @@ public class TarefaRepository : ITarefaRepository
         }
         catch (PostgresException error)
         {
-            throw new ApplicationException("Um erro aconteceu durante a query SQL: " + error.Message);
+            throw new NpgsqlException("Um erro aconteceu durante a query SQL: " + error.Message);
         }
     }
 
@@ -112,7 +112,7 @@ public class TarefaRepository : ITarefaRepository
         }
         catch (PostgresException error)
         {
-            throw new ApplicationException("Um erro aconteceu durante a query SQL: " + error.Message);
+            throw new NpgsqlException("Um erro aconteceu durante a query SQL: " + error.Message);
         }
     }
 
@@ -129,7 +129,7 @@ public class TarefaRepository : ITarefaRepository
         }
         catch (PostgresException error)
         {
-            throw new ApplicationException("Um erro aconteceu durante a query SQL: " + error.Message);
+            throw new NpgsqlException("Um erro aconteceu durante a query SQL: " + error.Message);
         }
     }
 }

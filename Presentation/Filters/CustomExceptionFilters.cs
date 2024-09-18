@@ -1,6 +1,7 @@
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Npgsql;
 
 namespace Presentation.Filters;
 
@@ -21,6 +22,11 @@ public class CustomExceptionFilters : IExceptionFilter
         {
             context.Result = new BadRequestObjectResult(new { error = domainException.Message });
             context.ExceptionHandled = true;
+        }
+
+        if (context.Exception is NpgsqlException npgsqlException)
+        {
+            context.Result = new BadRequestObjectResult(new { error = npgsqlException.Message });
         }
         else
         {
