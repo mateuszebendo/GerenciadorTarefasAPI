@@ -39,7 +39,8 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> LoginUsuario([FromBody] LoginUsuarioRequest loginUsuarioRequest)
     {
         var loginUsuarioDto = new LoginUsuarioDTO(loginUsuarioRequest.Email, loginUsuarioRequest.Senha);
-        if (await _usuarioService.LogarUsuario(loginUsuarioDto))
+        int usuarioId = await _usuarioService.LogarUsuario(loginUsuarioDto);
+        if (usuarioId >= 0)
         {
             var jwtSettings = _configuration.GetSection("Jwt");
             var key = Encoding.ASCII.GetBytes(jwtSettings["Key"]);
@@ -48,7 +49,8 @@ public class AuthController : ControllerBase
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, loginUsuarioDto.Email)
+                    new Claim(ClaimTypes.Name, loginUsuarioDto.Email),
+                    new Claim("UsuarioId", usuarioId.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(double.Parse(jwtSettings["ExpireHours"])),
                 Issuer = jwtSettings["Issuer"],

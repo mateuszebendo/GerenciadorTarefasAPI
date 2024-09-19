@@ -4,9 +4,11 @@ namespace Application.Contracts;
 
 public interface ITarefaService
 {
-    Task<TarefaDTO> Post(CriarTarefaDTO criarTarefaDto);
-    Task<List<TarefaDTO>> Get();
-    Task<TarefaDTO> GetById(int id);
-    Task<TarefaDTO> Put(AtualizarTarefaDTO atualizarTarefaDto, int id);
-    Task<bool> Delete(int id);
+    Task<TarefaDTO> CriarTarefa(CriarTarefaDTO criarTarefaDto);
+    Task<List<TarefaDTO>> RecuperarTarefas(string usuarioId);
+    Task<TarefaDTO> RecuperarTarefaPorId(string id, string usuarioId);
+    Task<TarefaDTO> AlterarTarefa(AtualizarTarefaDTO atualizarTarefaDto, string id);
+    Task<string> ColocarTarefaEmAndamento(string id, string usuarioId);
+    Task<string> ConcluirTarefa(string id, string usuarioId);
+    Task<string> DeletarTarefa(string id, string usuarioId);
 }

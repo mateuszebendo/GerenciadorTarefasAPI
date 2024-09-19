@@ -31,7 +31,7 @@ public class CustomExceptionFilters : IExceptionFilter
         {
             _logger.LogError(context.Exception, "Erro não tratado.");
 
-            context.Result = new ObjectResult(new { error = "Ocorreu um erro interno no servidor." })
+            context.Result = new ObjectResult(new { error = "Ocorreu um erro interno no servidor" })
             {
                 StatusCode = 500
             };

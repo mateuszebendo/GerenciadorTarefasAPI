@@ -16,9 +16,9 @@ public class CriarTarefaDTO
     
     public Status Status { get; set; }
     
-    public int UsuarioId { get; set; }
+    public string UsuarioId { get; set; }
 
-    public CriarTarefaDTO(string titulo, string descricao, int usuarioId)
+    public CriarTarefaDTO(string titulo, string descricao, string usuarioId)
     {
         Titulo = titulo;
         Descricao = descricao;

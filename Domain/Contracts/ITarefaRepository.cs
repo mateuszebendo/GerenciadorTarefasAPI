@@ -4,10 +4,12 @@ namespace Domain.Contracts;
 
 public interface ITarefaRepository
 {
-    public Task<IEnumerable<Tarefa>> Get();
-    public Task<IEnumerable<Tarefa>> GetAlphabetically();
-    public Task<Tarefa> GetById(int id);
-    public Task<Tarefa> Post(Tarefa tarefa);
-    public Task<bool> Put(Tarefa tarefa, int id);
-    public Task<bool> Delete(int id);
+    Task<Tarefa> CriarTarefa(Tarefa tarefa);
+    Task<IEnumerable<Tarefa>> RecuperarTarefas(int usuarioId);
+    Task<IEnumerable<Tarefa>> RecuperarTarefasAlfabeticamente();
+    Task<Tarefa> RecuperarTarefaPorId(int id, int usuarioId);
+    Task<Tarefa> AlterarTarefa(Tarefa tarefa, int tarefaId);
+    Task<string> ColocarTarefaEmAndamento(int tarefaId, int usuarioId);
+    Task<string> ConcluirTarefa(int tarefaId, int usuarioId);
+    Task<string> DeletarTarefa(int tarefaId, int usuarioId);
 }

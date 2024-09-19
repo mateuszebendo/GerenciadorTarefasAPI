@@ -35,11 +35,10 @@ public class Tarefa
         UsuarioId = usuarioId;
     }
 
-    public Tarefa(string titulo, DateTime dataConclusao, string descricao, int usuarioId)
+    public Tarefa(string titulo, string descricao, int usuarioId)
     {
         Titulo = titulo;
         Descricao = descricao;
-        DataConclusao = dataConclusao;
         UsuarioId = usuarioId;
     }
 }

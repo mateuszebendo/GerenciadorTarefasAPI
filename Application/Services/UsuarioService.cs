@@ -33,7 +33,7 @@ public class UsuarioService : IUsuarioService
         }
     }
 
-    public async Task<bool> LogarUsuario(LoginUsuarioDTO loginUsuarioDto)
+    public async Task<int> LogarUsuario(LoginUsuarioDTO loginUsuarioDto)
     {
         try
         {
@@ -45,7 +45,12 @@ public class UsuarioService : IUsuarioService
 
             var usuarioEncontrado = _usuarioDomainService.VerificaLogin(usuarios, loginUsuarioDto.Email);
 
-            return _usuarioDomainService.VerificarSenha(usuarioEncontrado.Senha, loginUsuarioDto.SenhaInserida);
+            if (_usuarioDomainService.VerificarSenha(usuarioEncontrado.Senha, loginUsuarioDto.SenhaInserida))
+            {
+                return usuarioEncontrado.UsuarioId;
+            }
+
+            return -1;
         } catch (SystemException error)
         {
             throw new ApplicationException("Ocorreu um erro com os dados fornecidos." + error.Message);

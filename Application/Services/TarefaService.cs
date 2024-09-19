@@ -20,21 +20,21 @@ public class TarefaService : ITarefaService
         _tarefaDomainService = tarefaDomainService;
     }
     
-    public async Task<TarefaDTO> Post(CriarTarefaDTO criarTarefaDto)
+    public async Task<TarefaDTO> CriarTarefa(CriarTarefaDTO criarTarefaDto)
     {
         try
         {
             List<string> listaTarefa = new List<string>();
-            foreach (var antigaTarefa in await _tarefaRepository.GetAlphabetically())
+            foreach (var antigaTarefa in await _tarefaRepository.RecuperarTarefasAlfabeticamente())
             {
                 listaTarefa.Add(antigaTarefa.Titulo);
             }
             
             _tarefaDomainService.VerificaDuplicidadeTitulo(listaTarefa, criarTarefaDto.Titulo);
             
-            Tarefa tarefa = new Tarefa(criarTarefaDto.Titulo, criarTarefaDto.Descricao, criarTarefaDto.Status, criarTarefaDto.UsuarioId);
+            Tarefa tarefa = new Tarefa(criarTarefaDto.Titulo, criarTarefaDto.Descricao, criarTarefaDto.Status, int.Parse(criarTarefaDto.UsuarioId));
 
-            tarefa = await _tarefaRepository.Post(tarefa);
+            tarefa = await _tarefaRepository.CriarTarefa(tarefa);
 
             return _mapper.Map<TarefaDTO>(tarefa);
         }
@@ -44,11 +44,11 @@ public class TarefaService : ITarefaService
         }
     }
 
-    public async Task<List<TarefaDTO>> Get()
+    public async Task<List<TarefaDTO>> RecuperarTarefas(string usuarioId)
     {
         try
         {
-            IEnumerable<Tarefa> tarefas = await _tarefaRepository.Get();
+            IEnumerable<Tarefa> tarefas = await _tarefaRepository.RecuperarTarefas(int.Parse(usuarioId));
 
             if (tarefas.LongCount() == 0)
             {
@@ -68,15 +68,15 @@ public class TarefaService : ITarefaService
         }
     }
 
-    public async Task<TarefaDTO> GetById(int id)
+    public async Task<TarefaDTO> RecuperarTarefaPorId(string tarefaId, string usuarioId)
     {
         try
         {
-            Tarefa tarefa = await _tarefaRepository.GetById(id);
+            Tarefa tarefa = await _tarefaRepository.RecuperarTarefaPorId(int.Parse(tarefaId), int.Parse(usuarioId));
 
             if (tarefa.Titulo.LongCount() == 0)
             {
-                throw new Exception("Não foi possível resgatar a tarefa");
+                throw new Exception("Não foi encontrada nenhuma recuperar a tarefa com esse Id");
             }
 
             return _mapper.Map<TarefaDTO>(tarefa);
@@ -86,31 +86,49 @@ public class TarefaService : ITarefaService
         }
     }
 
-    public async Task<TarefaDTO> Put(AtualizarTarefaDTO atualizarTarefaDto, int id)
+    public async Task<TarefaDTO> AlterarTarefa(AtualizarTarefaDTO atualizarTarefaDto, string tarefaId)
     {
         try
         {
-            Tarefa tarefa = new Tarefa(atualizarTarefaDto.Titulo,
-                atualizarTarefaDto.DataConclusao, atualizarTarefaDto.Descricao, atualizarTarefaDto.UsuarioId);
+            Tarefa tarefa = new Tarefa(atualizarTarefaDto.Titulo, atualizarTarefaDto.Descricao, int.Parse(atualizarTarefaDto.UsuarioId));
 
-            if (await _tarefaRepository.Put(tarefa, id))
-            {
-                tarefa = await _tarefaRepository.GetById(id);
-                return _mapper.Map<TarefaDTO>(tarefa);
-            }
-
-            throw new Exception("Ocorreu um erro ao tentar atualizar a Tarefa");
+            tarefa = await _tarefaRepository.AlterarTarefa(tarefa, int.Parse(tarefaId));
+            return _mapper.Map<TarefaDTO>(tarefa);
         } catch (ArgumentException error)
         {
             throw new ApplicationException("Ocorreu ao atualizar a tarefa" + error.Message);
         }
     }
 
-    public async Task<bool> Delete(int id)
+    public async Task<string> ColocarTarefaEmAndamento(string tarefaId, string usuarioId)
     {
         try
         {
-            return await _tarefaRepository.Delete(id);
+            return await _tarefaRepository.ColocarTarefaEmAndamento(int.Parse(tarefaId), int.Parse(usuarioId));
+        }
+        catch (ArgumentException error)
+        {
+            throw new ApplicationException("Ocorreu ao atualizar a tarefa para pendente: " + error.Message);
+        }
+    }
+    
+    public async Task<string> ConcluirTarefa(string tarefaId, string usuarioId)
+    {
+        try
+        {
+            return await _tarefaRepository.ConcluirTarefa(int.Parse(tarefaId), int.Parse(usuarioId));
+        }
+        catch (ArgumentException error)
+        {
+            throw new ApplicationException("Ocorreu ao atualizar a tarefa para pendente: " + error.Message);
+        }
+    }
+
+    public async Task<string> DeletarTarefa(string tarefaId, string usuarioId)
+    {
+        try
+        {
+            return await _tarefaRepository.DeletarTarefa(int.Parse(tarefaId), int.Parse(usuarioId));
         } catch (ArgumentException error)
         {
             throw new ApplicationException("Ocorreu ao atualizar a tarefa" + error.Message);

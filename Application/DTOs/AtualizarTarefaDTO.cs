@@ -12,15 +12,13 @@ public class AtualizarTarefaDTO
     [MaxLength(1024, ErrorMessage = "A descrição deve conter no máximo 1024 caracteres.")]
     public string Descricao { get; set; }
     
-    public DateTime DataConclusao { get; set; }
     
-    public int UsuarioId { get; set; }
+    public string UsuarioId { get; set; }
 
-    public AtualizarTarefaDTO(string titulo, string descricao,DateTime dataConclusao, int usuarioId)
+    public AtualizarTarefaDTO(string titulo, string descricao, string usuarioId)
     {
         Titulo = titulo;
         Descricao = descricao;
-        DataConclusao = dataConclusao;
         UsuarioId = usuarioId;
     }
 }

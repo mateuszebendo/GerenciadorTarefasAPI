@@ -6,7 +6,7 @@ namespace Application.DTOs;
 
 public class TarefaDTO
 {
-    public int TarefaId { get; set; }
+    public string TarefaId { get; set; }
     
     [Required(ErrorMessage = "Título obrigatório")]
     [MaxLength(100, ErrorMessage = "O título deve conter no máximo 100 caracteres.")]
@@ -21,9 +21,9 @@ public class TarefaDTO
     
     public Status Status { get; set; }
     
-    public int UsuarioId { get; set; }
+    public string UsuarioId { get; set; }
 
-    public TarefaDTO(int tarefaId, string titulo, string descricao, DateTime dataCriacao, DateTime dataConclusao, Status status, int usuarioId)
+    public TarefaDTO(string tarefaId, string titulo, string descricao, DateTime dataCriacao, DateTime dataConclusao, Status status, string usuarioId)
     {
         TarefaId = tarefaId;
         Titulo = titulo;
@@ -36,12 +36,12 @@ public class TarefaDTO
 
     public TarefaDTO(Tarefa tarefa)
     {
-        TarefaId = tarefa.TarefaId;
+        TarefaId = tarefa.TarefaId.ToString();
         Titulo = tarefa.Titulo;
         Descricao = tarefa.Descricao;
         DataCriacao = tarefa.DataCriacao;
         DataConclusao = tarefa.DataConclusao;
         Status = tarefa.Status;
-        UsuarioId = tarefa.UsuarioId;
+        UsuarioId = tarefa.UsuarioId.ToString();
     }
 }
