@@ -16,6 +16,6 @@ public class CriarUsuarioDTO
         Nome = nome;
         Email = email;
         Senha = senha;
-        Status = UsuarioStatus.Inativo;
+        Status = UsuarioStatus.Ativo;
     }
 }

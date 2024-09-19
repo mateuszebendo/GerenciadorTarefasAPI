@@ -14,13 +14,37 @@ public class UsuarioRepository : IUsuarioRepository
     {
         _connectionString = DataBaseConfig.ConnectionString;
     }
-        
-        
-    public async Task<IEnumerable<Usuario>> Get()
+    
+    public async Task<bool> RegistrarUsuario(Usuario usuario)
     {
         try
         {
-            string sqlQuery = "SELECT * FROM Usuarios";
+            string sqlQuery = "INSERT INTO Usuarios(Nome, Status, Email, Senha)" +
+                              "VALUES (@nome, @status, @email, @senha)";
+            
+            var parametros = new DynamicParameters();
+            
+            parametros.Add("nome", usuario.Nome);
+            parametros.Add("status", usuario.Status.ToString());
+            parametros.Add("email", usuario.Email);
+            parametros.Add("senha", usuario.Senha);
+
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                return await connection.ExecuteAsync(sqlQuery, parametros) > 0;
+            }
+        }
+        catch (PostgresException error)
+        {
+            throw new NpgsqlException("Ocorreu um erro na requisição: " + error.MessageText);
+        }
+    }
+        
+    public async Task<IEnumerable<Usuario>> RecuperarUsuariosAtivos()
+    {
+        try
+        {
+            string sqlQuery = "SELECT * FROM Usuarios WHERE Status = 'Ativo'";
 
             using (var connection = new NpgsqlConnection(_connectionString))
             {
@@ -33,7 +57,7 @@ public class UsuarioRepository : IUsuarioRepository
         }
     }
 
-    public async Task<IEnumerable<Usuario>> GetAlphabetically()
+    public async Task<IEnumerable<Usuario>> RecuperarUsuariosAlfabeticamente()
     {
         try
         {
@@ -50,7 +74,7 @@ public class UsuarioRepository : IUsuarioRepository
         }
     }
 
-    public async Task<Usuario> GetById(int id)
+    public async Task<Usuario> RecuperarUsuarioPorId(int id)
     {
         try
         {
@@ -67,57 +91,37 @@ public class UsuarioRepository : IUsuarioRepository
         }
     }
 
-    public async Task<Usuario> Post(Usuario usuario)
-    {
-        try
-        {
-            string sqlQuery = "INSERT INTO Usuarios(Nome, Status, Email, Senha)" +
-                              "VALUES (@nome, @status, @email, @senha) " +
-                              "RETURNING UsuarioId";
+    // public async Task<bool> Put(Usuario usuario, int id)
+    // {
+    //     try
+    //     {
+    //         string sqlQuery = @"UPDATE Usuarios
+    //                             SET Nome = @nome
+    //                                 Status = @status
+    //                                 Email = @email 
+    //                                 Senha = @senha
+    //                             WHERE UsuarioId = @Id";
+    //
+    //         var parametros = new DynamicParameters();
+    //         
+    //         parametros.Add("nome", usuario.Nome);
+    //         parametros.Add("status", usuario.Status.ToString());
+    //         parametros.Add("email", usuario.Email);
+    //         parametros.Add("senha", usuario.Senha);
+    //         parametros.Add("Id", id);
+    //
+    //         using (var connection = new NpgsqlConnection(_connectionString))
+    //         {
+    //             return await connection.ExecuteAsync(sqlQuery, parametros) > 0;
+    //         }
+    //     }
+    //     catch (PostgresException error)
+    //     {
+    //         throw new NpgsqlException("Ocorreu um erro na requisição: " + error.MessageText);
+    //     }
+    // }
 
-            using (var connection = new NpgsqlConnection(_connectionString))
-            {
-                usuario.UsuarioId =  await connection.ExecuteScalarAsync<int>(sqlQuery, usuario);
-                return usuario;
-            }
-        }
-        catch (PostgresException error)
-        {
-            throw new NpgsqlException("Ocorreu um erro na requisição: " + error.MessageText);
-        }
-    }
-
-    public async Task<bool> Put(Usuario usuario, int id)
-    {
-        try
-        {
-            string sqlQuery = @"UPDATE Usuarios
-                                SET Nome = @nome
-                                    Status = @status
-                                    Email = @email 
-                                    Senha = @senha
-                                WHERE UsuarioId = @Id";
-
-            var parametros = new DynamicParameters();
-            
-            parametros.Add("nome", usuario.Nome);
-            parametros.Add("status", usuario.Status.ToString());
-            parametros.Add("email", usuario.Email);
-            parametros.Add("senha", usuario.Senha);
-            parametros.Add("Id", id);
-
-            using (var connection = new NpgsqlConnection(_connectionString))
-            {
-                return await connection.ExecuteAsync(sqlQuery, parametros) > 0;
-            }
-        }
-        catch (PostgresException error)
-        {
-            throw new NpgsqlException("Ocorreu um erro na requisição: " + error.MessageText);
-        }
-    }
-
-    public async Task<bool> Delete(int id)
+    public async Task<bool> DesativarUsuario(int id)
     {
         try
         {

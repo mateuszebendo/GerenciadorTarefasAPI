@@ -45,3 +45,11 @@
 /home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/MassTransit.dll
 /home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/MassTransit.Abstractions.dll
 /home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/MassTransit.RabbitMqTransport.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/zeze/Documentos/GerenciadorTarefasAPI/GerenciadorTarefasAPI/Presentation/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll

@@ -1,5 +1,6 @@
 using Application.Contracts;
 using Application.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Requests;
 using Presentation.Return;
@@ -18,6 +19,7 @@ public class TarefaController : ControllerBase
     }
 
     [HttpPost("criar-tarefa")]
+    [Authorize]
     public async Task<IActionResult> Post([FromBody] CriarTarefaRequest criarTarefaRequest)
     {
         CriarTarefaDTO criarTarefaDto = new CriarTarefaDTO(criarTarefaRequest.Titulo, criarTarefaRequest.Descricao, criarTarefaRequest.UsuarioId);
@@ -28,6 +30,7 @@ public class TarefaController : ControllerBase
     }
 
     [HttpGet("recuperar-tarefas")]
+    [Authorize]
     public async Task<IActionResult> Get()
     {
         List<TarefaReturn> listaReturn = new List<TarefaReturn>();
@@ -41,6 +44,7 @@ public class TarefaController : ControllerBase
     }
     
     [HttpGet("recuperar-tarefa/{id}")]
+    [Authorize]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
         var tarefaReturn = new TarefaReturn(await _tarefaService.GetById(id));
@@ -49,6 +53,7 @@ public class TarefaController : ControllerBase
     }
 
     [HttpPut("alterar-tarefa/{id}")]
+    [Authorize]
     public async Task<IActionResult> Put([FromBody] AtualizarTarefaRequest atualizarTarefaRequest, [FromRoute] int id)
     {
         AtualizarTarefaDTO atualizarTarefaDto = new AtualizarTarefaDTO(atualizarTarefaRequest.Titulo,
@@ -58,6 +63,7 @@ public class TarefaController : ControllerBase
     }
 
     [HttpDelete("deletar-tarefa/{id}")]
+    [Authorize]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
         if (await _tarefaService.Delete(id))

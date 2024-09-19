@@ -4,10 +4,10 @@ namespace Domain.Contracts;
 
 public interface IUsuarioRepository
 {
-    public Task<IEnumerable<Usuario>> Get();
-    public Task<IEnumerable<Usuario>> GetAlphabetically();
-    public Task<Usuario> GetById(int id);
-    public Task<Usuario> Post(Usuario tarefa);
-    public Task<bool> Put(Usuario tarefa, int id);
-    public Task<bool> Delete(int id);
+    public Task<bool> RegistrarUsuario(Usuario usuario);
+    public Task<IEnumerable<Usuario>> RecuperarUsuariosAtivos();
+    public Task<IEnumerable<Usuario>> RecuperarUsuariosAlfabeticamente();
+    public Task<Usuario> RecuperarUsuarioPorId(int id);
+    // public Task<bool> Put(Usuario usuario, int id);
+    public Task<bool> DesativarUsuario(int id);
 }
